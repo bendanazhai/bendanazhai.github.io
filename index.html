@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>你的名字 · 个人主页</title>
+    <!-- Google Fonts & Font Awesome -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #fafafa;
+            color: #1e1e2f;
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* 容器 */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* 头部导航 */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 2rem;
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .logo {
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: #3b3b5c;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: #5f5fc4;
+        }
+
+        /* 按钮 */
+        .btn {
+            display: inline-block;
+            background-color: #5f5fc4;
+            color: white;
+            padding: 0.7rem 1.5rem;
+            border-radius: 30px;
+            font-weight: 500;
+            transition: background-color 0.2s, transform 0.1s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: #4b4ba3;
+            transform: scale(1.02);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: #5f5fc4;
+            border: 2px solid #5f5fc4;
+        }
+
+        .btn-outline:hover {
+            background-color: #5f5fc4;
+            color: white;
+        }
+
+        /* 英雄区 */
+        .hero {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 3rem;
+            padding: 4rem 0;
+            flex-wrap: wrap;
+        }
+
+        .hero-content {
+            flex: 1 1 400px;
+        }
+
+        .hero-content h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            color: #1e1e2f;
+        }
+
+        .hero-content .highlight {
+            color: #5f5fc4;
+            border-bottom: 3px solid #5f5fc4;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            color: #4a4a6a;
+            margin-bottom: 2rem;
+            max-width: 500px;
+        }
+
+        .hero-image {
+            flex: 1 1 300px;
+            text-align: center;
+        }
+
+        .hero-image img {
+            width: 100%;
+            max-width: 350px;
+            border-radius: 50%;
+            box-shadow: 0 20px 30px -10px rgba(95, 95, 196, 0.3);
+            border: 5px solid white;
+        }
+
+        /* 关于部分 */
+        .section {
+            padding: 4rem 0;
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            text-align: center;
+            color: #1e1e2f;
+        }
+
+        .about-text {
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            text-align: center;
+            font-size: 1.1rem;
+            color: #3a3a5a;
+        }
+
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        .skill-tag {
+            background-color: #e9e9ff;
+            color: #5f5fc4;
+            padding: 0.5rem 1.2rem;
+            border-radius: 30px;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: all 0.2s;
+        }
+
+        .skill-tag:hover {
+            background-color: #5f5fc4;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* 项目卡片网格 */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 30px rgba(95, 95, 196, 0.15);
+        }
+
+        .card-img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            background-color: #c2c2ff;
+        }
+
+        .card-content {
+            padding: 1.5rem;
+        }
+
+        .card-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .card-desc {
+            color: #4a4a6a;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+
+        .card-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .card-tag {
+            background-color: #f0f0fa;
+            color: #5f5fc4;
+            padding: 0.2rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .card-link {
+            font-weight: 600;
+            color: #5f5fc4;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .card-link i {
+            font-size: 0.8rem;
+            transition: transform 0.2s;
+        }
+
+        .card-link:hover i {
+            transform: translateX(4px);
+        }
+
+        /* 联系区域 */
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin: 2rem 0;
+        }
+
+        .contact-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 60px;
+            height: 60px;
+            background-color: #e9e9ff;
+            border-radius: 50%;
+            font-size: 1.8rem;
+            color: #5f5fc4;
+            transition: all 0.2s;
+        }
+
+        .contact-icon:hover {
+            background-color: #5f5fc4;
+            color: white;
+            transform: scale(1.1);
+        }
+
+        /* 页脚 */
+        .footer {
+            background-color: white;
+            padding: 2rem;
+            text-align: center;
+            color: #6b6b8b;
+            border-top: 1px solid #eee;
+        }
+
+        /* 移动端优化 */
+        @media (max-width: 700px) {
+            .navbar {
+                flex-direction: column;
+                gap: 1rem;
+                padding: 1rem;
+            }
+            .hero {
+                flex-direction: column-reverse;
+                text-align: center;
+            }
+            .hero-content p {
+                margin-left: auto;
+                margin-right: auto;
+            }
+            .section-title {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="logo">你的名字</div>
+        <div class="nav-links">
+            <a href="#home">首页</a>
+            <a href="#about">关于</a>
+            <a href="#projects">项目</a>
+            <a href="#contact">联系</a>
+        </div>
+    </nav>
+
+    <main>
+        <!-- 英雄区 / 首页 -->
+        <section id="home" class="container hero">
+            <div class="hero-content">
+                <h1>你好，我是 <span class="highlight">你的名字</span></h1>
+                <p>全栈开发者 · 开源爱好者 · 创意设计师。我喜欢构建美观、实用的产品。</p>
+                <a href="#projects" class="btn">查看我的作品 <i class="fas fa-arrow-right"></i></a>
+                <a href="#contact" class="btn btn-outline" style="margin-left: 1rem;">联系我</a>
+            </div>
+            <div class="hero-image">
+                <!-- 替换为你自己的头像链接 -->
+                <img src="https://via.placeholder.com/350x350?text=你的头像" alt="头像占位">
+            </div>
+        </section>
+
+        <!-- 关于部分 -->
+        <section id="about" class="container section">
+            <h2 class="section-title">关于我</h2>
+            <p class="about-text">
+                我是一名热衷于创造优雅代码和体验的开发者。拥有 X 年经验，擅长前端与后端技术，热爱将设计转化为可交互的作品。空闲时喜欢研究新技术和参与开源。
+            </p>
+            <div class="skills">
+                <span class="skill-tag">JavaScript / TypeScript</span>
+                <span class="skill-tag">React & Vue</span>
+                <span class="skill-tag">Node.js</span>
+                <span class="skill-tag">Python</span>
+                <span class="skill-tag">UI/UX 设计</span>
+                <span class="skill-tag">Tailwind CSS</span>
+                <!-- 添加更多技能标签 -->
+            </div>
+        </section>
+
+        <!-- 项目展示 -->
+        <section id="projects" class="container section">
+            <h2 class="section-title">我的项目</h2>
+            <div class="projects-grid">
+                <!-- 项目卡片 1 -->
+                <div class="card">
+                    <img src="https://via.placeholder.com/400x200?text=项目预览1" alt="项目截图" class="card-img">
+                    <div class="card-content">
+                        <h3 class="card-title">项目名称</h3>
+                        <p class="card-desc">这是一个简短的项目描述，说明这个项目是做什么的，用了什么技术，解决了什么问题。</p>
+                        <div class="card-tags">
+                            <span class="card-tag">React</span>
+                            <span class="card-tag">Node.js</span>
+                            <span class="card-tag">MongoDB</span>
+                        </div>
+                        <a href="#" class="card-link">查看详情 <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <!-- 卡片 2 -->
+                <div class="card">
+                    <img src="https://via.placeholder.com/400x200?text=项目预览2" alt="项目截图" class="card-img">
+                    <div class="card-content">
+                        <h3 class="card-title">另一个项目</h3>
+                        <p class="card-desc">一个工具类应用，帮助用户提高效率。采用 Vue3 和 Tailwind 构建。</p>
+                        <div class="card-tags">
+                            <span class="card-tag">Vue</span>
+                            <span class="card-tag">Tailwind</span>
+                            <span class="card-tag">Firebase</span>
+                        </div>
+                        <a href="#" class="card-link">查看详情 <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <!-- 卡片 3 -->
+                <div class="card">
+                    <img src="https://via.placeholder.com/400x200?text=项目预览3" alt="项目截图" class="card-img">
+                    <div class="card-content">
+                        <h3 class="card-title">开源库</h3>
+                        <p class="card-desc">一个轻量级的动画库，用于快速添加过渡效果。在 GitHub 上有 500+ star。</p>
+                        <div class="card-tags">
+                            <span class="card-tag">JavaScript</span>
+                            <span class="card-tag">CSS</span>
+                            <span class="card-tag">开源</span>
+                        </div>
+                        <a href="#" class="card-link">查看详情 <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <!-- 你可以继续添加更多卡片 -->
+            </div>
+        </section>
+
+        <!-- 联系我 -->
+        <section id="contact" class="container section">
+            <h2 class="section-title">联系我</h2>
+            <div class="contact-links">
+                <a href="#" target="_blank" class="contact-icon" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                <a href="#" target="_blank" class="contact-icon" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="#" target="_blank" class="contact-icon" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="mailto:your.email@example.com" class="contact-icon" aria-label="Email"><i class="fas fa-envelope"></i></a>
+            </div>
+            <p style="text-align: center; margin-top: 2rem;">或者直接发送邮件到 <strong>your.email@example.com</strong></p>
+        </section>
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <p>&copy; 2025 你的名字. 用 ❤️ 和 GitHub Pages 制作.</p>
+    </footer>
+</body>
+</html>
